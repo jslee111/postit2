@@ -5,13 +5,17 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
-  def show; end
+  def show
+    @comment = Comment.new
+
+  end
 
   def new
     @post = Post.new
   end
 
   def create
+    # binding.pry
     @post = Post.new(post_params)
     @post.creator = User.first #TODO: change once we have authentication
 
@@ -27,7 +31,9 @@ class PostsController < ApplicationController
   def edit; end
 
   def update
-    @post = Post.find(params[:id])
+
+    # binding.pry
+    # @post = Post.find(params[:id])
   
     if @post.update(post_params)
       flash[:notice] = "This post was updated."
@@ -40,7 +46,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :url, :description)
+    params.require(:post).permit(:title, :url, :description, category_ids: [])
   end
 
   def set_post
