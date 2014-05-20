@@ -3,17 +3,17 @@ class Comment < ActiveRecord::Base
   belongs_to :post
   has_many :votes, as:  :voteable
 
-  validates :body, presence: true
+  validates :body, presence: true, length: {minimum: 10}
 
   def total_votes
-    self.up_votes - self.down_votes
+    self.upvotes - self.downvotes
   end
 
-  def up_votes
+  def upvotes
     self.votes.where(vote: true).size
   end
 
-  def down_votes
+  def downvotes
     self.votes.where(vote: false).size
   end
 end

@@ -20,7 +20,7 @@
   </ul>
 
 <% if params[:tab].nil? %>
-  <% @userposts.each do |post| %>
+  <% @user.posts.each do |post| %>
     <%= render 'posts/post', post: post %>
    <% end %> 
   <% elsif params[:tab] == 'comments' %>

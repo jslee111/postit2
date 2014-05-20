@@ -1,0 +1,12 @@
+<p class='lead'>
+All Categories
+<hr>
+</p>
+
+<% @categories.each do |format| %>
+  <div class='row'>
+    <div class='span8 well'>
+      <p><%= format.name %></p>
+    </div>
+  </div>
+<% end %>
